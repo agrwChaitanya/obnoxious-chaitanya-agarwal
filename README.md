@@ -2,7 +2,7 @@
 
 A real-time canteen pre-ordering and queue management system that eliminates physical waiting lines. Students order ahead, pick a convenient time slot, and get a token — while merchants manage the entire order pipeline from a live dashboard.
 
-Built for [Hackathon Name] by [Your Name / Team Name].
+Built for SOCF 2.0 by Obnoxious - Chaitanya Agarwal (24BAI10341).
 
 ---
 
@@ -127,12 +127,3 @@ npm run dev
 - Multi-canteen / multi-vendor support
 
 ---
-
-## 👥 Team
-- [Your Name] — [Role]
-- [Teammate] — [Role]
-
----
-
-## 📄 License
-This project was built for [Hackathon Name] and is open for educational use.
