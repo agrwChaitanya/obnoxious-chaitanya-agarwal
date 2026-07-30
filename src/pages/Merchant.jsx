@@ -14,6 +14,18 @@ function Merchant({ goHome }) {
 
   const [orders, setOrders] = useState([]);
 
+  const preparingCount = orders.filter(
+  order => order.status === "Preparing"
+).length;
+
+const readyCount = orders.filter(
+  order => order.status === "Ready"
+).length;
+
+const collectedCount = orders.filter(
+  order => order.status === "Collected"
+).length;
+
 
 
 useEffect(() => {
@@ -52,16 +64,37 @@ const updateStatus = async (id, status) => {
 return (
   <div className="merchant">
 
-    <div style={{ marginBottom: "20px" }}>
-      <button
-        className="checkout-btn"
+    <div className="top-bar">
+
+    <button
+        className="home-btn"
         onClick={goHome}
-      >
+    >
         🏠 Home
-      </button>
-    </div>
+    </button>
 
     <h1>🧑‍🍳 Merchant Dashboard</h1>
+
+</div>
+
+<div className="summary">
+
+  <div className="summary-card">
+    <h3>🍳 Preparing</h3>
+    <h1>{preparingCount}</h1>
+  </div>
+
+  <div className="summary-card">
+    <h3>✅ Ready</h3>
+    <h1>{readyCount}</h1>
+  </div>
+
+  <div className="summary-card">
+    <h3>📦 Collected</h3>
+    <h1>{collectedCount}</h1>
+  </div>
+
+</div>
 
     {orders.length === 0 && (
       <h3>No Orders Yet</h3>
