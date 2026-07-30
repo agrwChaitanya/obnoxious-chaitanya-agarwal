@@ -8,7 +8,7 @@ function Token({ order, backToMenu }) {
 
       <h2>Token</h2>
 
-      <h1>{order.token}</h1>
+      <h1>Token #{order.token}</h1>
 
       <hr />
 

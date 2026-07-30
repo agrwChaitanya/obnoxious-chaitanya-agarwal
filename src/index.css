@@ -183,3 +183,18 @@ button {
     border-radius:8px;
     cursor:pointer;
 }
+
+.status.preparing{
+    background:#ffe08a;
+    color:#5a4300;
+}
+
+.status.ready{
+    background:#b8f5c4;
+    color:#0b6b2c;
+}
+
+.status.collected{
+    background:#d9d9d9;
+    color:#444;
+}

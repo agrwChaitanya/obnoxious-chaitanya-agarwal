@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   collection,
-  getDocs,
+  onSnapshot,
   updateDoc,
   doc,
   orderBy,
@@ -14,39 +14,40 @@ function Merchant({ goHome }) {
 
   const [orders, setOrders] = useState([]);
 
-  const loadOrders = async () => {
 
-    const q = query(
-      collection(db, "orders"),
-      orderBy("createdAt", "asc")
-    );
 
-    const snapshot = await getDocs(q);
+useEffect(() => {
 
-    const data = snapshot.docs.map((d) => ({
-      id: d.id,
-      ...d.data()
+  const q = query(
+    collection(db, "orders"),
+    orderBy("createdAt", "asc")
+  );
+
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+
+    const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
     }));
 
     setOrders(data);
 
-  };
+  });
 
-  useEffect(() => {
+  return () => unsubscribe();
 
-    loadOrders();
+}, []);
 
-  }, []);
+const updateStatus = async (id, status) => {
 
-  const updateStatus = async (id, status) => {
-
-    await updateDoc(doc(db, "orders", id), {
+  await updateDoc(
+    doc(db, "orders", id),
+    {
       status
-    });
+    }
+  );
 
-    loadOrders();
-
-  };
+};
 
 return (
   <div className="merchant">
@@ -66,19 +67,21 @@ return (
       <h3>No Orders Yet</h3>
     )}
 
-    {orders.map((order) => (
+    {orders
+  .filter(order => order.status !== "Collected")
+  .map(order => (
 
       <div className="order-card" key={order.id}>
 
         <div className="order-top">
 
           <h2>
-            🎫 {order.id.slice(0, 6).toUpperCase()}
-          </h2>
+            🎫 Token #{order.token}
+            </h2>
 
-          <span className="status">
+          <span className={`status ${order.status.toLowerCase()}`}>
             {order.status}
-          </span>
+            </span>
 
         </div>
 

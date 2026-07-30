@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { db } from "../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  runTransaction
+} from "firebase/firestore";
 
 function PickupSlot({
   cart,
@@ -41,25 +47,55 @@ function PickupSlot({
 
   try {
 
-    const docRef = await addDoc(collection(db, "orders"), {
+    const counterRef = doc(db, "counters", "queue");
 
-      items: cart,
+const token = await runTransaction(db, async (transaction) => {
 
-      total,
+  const counterDoc = await transaction.get(counterRef);
 
-      pickupSlot: selectedSlot,
+  if (!counterDoc.exists()) {
+    throw "Counter document missing!";
+  }
 
-      status: "Preparing",
+  const current = counterDoc.data().currentToken;
 
-      createdAt: serverTimestamp()
+  const next = current + 1;
 
-    });
+  transaction.update(counterRef, {
+    currentToken: next
+  });
 
-    onOrderPlaced({
-    token: docRef.id.slice(0, 6).toUpperCase(),
-    pickupSlot: selectedSlot,
-    status: "Preparing",
-    });
+  return next;
+
+});
+
+const docRef = await addDoc(collection(db,"orders"),{
+
+  token,
+
+  items: cart,
+
+  total,
+
+  pickupSlot: selectedSlot,
+
+  status:"Preparing",
+
+  createdAt: serverTimestamp()
+
+});
+
+onOrderPlaced({
+
+    id: docRef.id,
+
+    token,
+
+    pickupSlot:selectedSlot,
+
+    status:"Preparing"
+
+});
 
     console.log(docRef.id);
 
