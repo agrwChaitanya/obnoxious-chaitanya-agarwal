@@ -10,7 +10,7 @@ import {
 
 import { db } from "../firebase";
 
-function Merchant() {
+function Merchant({ goHome }) {
 
   const [orders, setOrders] = useState([]);
 
@@ -48,8 +48,17 @@ function Merchant() {
 
   };
 
- return (
+return (
   <div className="merchant">
+
+    <div style={{ marginBottom: "20px" }}>
+      <button
+        className="checkout-btn"
+        onClick={goHome}
+      >
+        🏠 Home
+      </button>
+    </div>
 
     <h1>🧑‍🍳 Merchant Dashboard</h1>
 
@@ -64,7 +73,7 @@ function Merchant() {
         <div className="order-top">
 
           <h2>
-            🎫 {order.id.slice(0,6).toUpperCase()}
+            🎫 {order.id.slice(0, 6).toUpperCase()}
           </h2>
 
           <span className="status">
@@ -77,7 +86,7 @@ function Merchant() {
 
         <h4>Items</h4>
 
-        {order.items.map(item => (
+        {order.items.map((item) => (
 
           <p key={item.id}>
             {item.name} × {item.quantity}
@@ -86,16 +95,19 @@ function Merchant() {
         ))}
 
         <p>
-          <strong>Pickup Slot:</strong>
-          {" "}
+          <strong>Pickup Slot:</strong>{" "}
           {order.pickupSlot}
+        </p>
+
+        <p>
+          <strong>Total:</strong> ₹{order.total}
         </p>
 
         <div className="merchant-buttons">
 
           <button
             onClick={() =>
-              updateStatus(order.id,"Preparing")
+              updateStatus(order.id, "Preparing")
             }
           >
             Preparing
@@ -103,7 +115,7 @@ function Merchant() {
 
           <button
             onClick={() =>
-              updateStatus(order.id,"Ready")
+              updateStatus(order.id, "Ready")
             }
           >
             Ready
@@ -111,7 +123,7 @@ function Merchant() {
 
           <button
             onClick={() =>
-              updateStatus(order.id,"Collected")
+              updateStatus(order.id, "Collected")
             }
           >
             Collected

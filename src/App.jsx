@@ -8,11 +8,11 @@ function App() {
   const [role, setRole] = useState("");
 
   if (role === "student") {
-    return <Student />;
+    return <Student goHome={() => setRole("")} />;
   }
 
   if (role === "merchant") {
-    return <Merchant />;
+    return <Merchant goHome={() => setRole("")} />;
   }
 
   return (
@@ -20,7 +20,7 @@ function App() {
 
       <h1>🍽 Smart Canteen</h1>
 
-      <h2>Queue-Free Ordering System</h2>
+      <p>Queue-Free Ordering System</p>
 
       <button
         className="role-btn"
@@ -38,7 +38,6 @@ function App() {
 
     </div>
   );
-
 }
 
 export default App;

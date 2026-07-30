@@ -5,7 +5,7 @@ import MenuCard from "../components/MenuCard";
 import Cart from "../components/Cart";
 import Token from "../components/Token";
 
-function Student() {
+function Student({ goHome }) {
   // Cart State
   const [cart, setCart] = useState([]);
   const [step, setStep] = useState("cart");
@@ -59,6 +59,14 @@ function Student() {
 
 return (
   <div className="page">
+    <div style={{ marginBottom: "20px" }}>
+  <button
+    className="checkout-btn"
+    onClick={goHome}
+  >
+    🏠 Home
+  </button>
+</div>
     <div className="menu-section">
       <h1>🍽 Smart Canteen</h1>
       <p className="subtitle">Order Ahead. Skip the Queue.</p>
