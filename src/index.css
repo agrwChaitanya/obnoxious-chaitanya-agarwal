@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+}
+
+h1 {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 6px 0;
+}
+
+.tag {
+  display: inline-block;
+  margin: 12px 0;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #d9f3ff;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+.page{
+    display:flex;
+    gap:30px;
+    padding:30px;
+    align-items:flex-start;
+}
+
+.menu-section{
+    flex:3;
+}
+
+.subtitle{
+    margin-bottom:25px;
+    color:gray;
+}
+
+.cart{
+    flex:1;
+    position:sticky;
+    top:20px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:18px 0;
+}
+
+.qty-controls{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.qty-controls button{
+    width:35px;
+}
+
+.checkout-btn{
+    margin-top:20px;
+    width:100%;
+    padding:12px;
+}
