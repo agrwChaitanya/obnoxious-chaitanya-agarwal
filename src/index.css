@@ -102,3 +102,44 @@ button {
     width:100%;
     padding:12px;
 }
+
+.slot-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:15px 0;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.recommended{
+    display:block;
+    color:green;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.landing{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    background:#f8f9fa;
+}
+
+.role-btn{
+    width:220px;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.role-btn:hover{
+    transform:scale(1.05);
+}
